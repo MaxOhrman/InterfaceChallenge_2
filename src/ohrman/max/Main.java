@@ -7,8 +7,8 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        Player player = new Player("Bob Ross", 10, 10);
-        Monster monster = new Monster("Demon", 10, 10);
+        ISaveable player = new Player("Bob Ross", 10, 10);
+        ISaveable monster = new Monster("Demon", 10, 10);
 
 
         //Load saved player file if exists
@@ -35,16 +35,20 @@ public class Main {
 
         //Test case of player
         System.out.println("\nAltering values of player and saving.");
-        player.setName("Max");
-        player.setHitPoints(5);
+        //Because the type is set to ISaveable we must cast it to player or change the type to "Player" in order
+        //to use its methods
+        ((Player)player).setName("Max");
+        ((Player)player).setHitPoints(5);
         saveObject("player.txt", player);
         readFile("player.txt");
 
         //Test case of monster
         System.out.println("\nAltering values of Monster and saving.");
-        monster.setName("Rat");
-        monster.setHitPoints(5);
-        monster.setStrength(1);
+        //Because the type is set to ISaveable we must cast it to Monster or change the type to "Monster" in order
+        //to use its methods
+        ((Monster)monster).setName("Rat");
+        ((Monster)monster).setHitPoints(5);
+        ((Monster)monster).setStrength(1);
         saveObject("monster.txt", monster);
         readFile("monster.txt");
 
